@@ -23,4 +23,14 @@ It supports adding, viewing, editing, and deleting books as well as maintaining 
 
 ---
 
-## 📂 Project Structure
+## 🖼️ Screenshots
+
+## Home Page – Navigation for books & my list
+
+Book List – Shows all available books
+
+Add Book – Form to register a new book
+
+Edit Book – Update book details
+
+My Books – Personalized book collection

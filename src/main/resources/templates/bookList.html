@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="en" xmlns:th="https://www.thymeleaf.com">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" 
+        rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+        crossorigin="anonymous">
+  <script src="https://kit.fontawesome.com/0faddc1af8.js" crossorigin="anonymous"></script>
+  <title>Available Books</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #f9f9f9;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Navbar */
+    .navbar {
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+    }
+    .navbar-brand {
+      font-weight: bold;
+      letter-spacing: 1px;
+    }
+    .nav-link:hover {
+      color: #ffc107 !important;
+    }
+
+    /* Table */
+    .table-container {
+      background: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+    .table th {
+      background-color: #212529;
+      color: #fff;
+    }
+
+    /* Action buttons */
+    .action-icons a {
+      font-size: 1.2rem;
+      margin-left: 10px;
+      transition: transform 0.2s ease;
+    }
+    .action-icons a:hover {
+      transform: scale(1.2);
+    }
+    .icon-edit {
+      color: #0d6efd; /* Bootstrap primary */
+    }
+    .icon-delete {
+      color: #dc3545; /* Bootstrap danger */
+    }
+
+    /* Footer */
+    footer {
+      margin-top: auto;
+      background-color: #212529;
+      color: #ffffff;
+      text-align: center;
+      padding: 15px 0;
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+      <a class="navbar-brand text-warning" href="/">📚 Book Store</a>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+          <li class="nav-item"><a class="nav-link active" href="/">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="available_books">Available Books</a></li>
+          <li class="nav-item"><a class="nav-link" href="my_books">My Books</a></li>
+          <li class="nav-item"><a class="btn btn-warning text-dark ms-2" href="book_register">+ Add Book</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Table -->
+  <div class="container my-5 col-md-10">
+    <div class="table-container">
+      <h3 class="text-center mb-4">Available Books</h3>
+      <table class="table table-striped table-hover">
+        <thead>
+          <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Name</th>
+            <th scope="col">Author</th>
+            <th scope="col">Price</th>
+            <th scope="col">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr th:each="b :${book}">
+            <td th:text="${b.id}"></td>
+            <td th:text="${b.name}"></td>
+            <td th:text="${b.author}"></td>
+            <td th:text="${b.price}"></td>
+            <td class="action-icons">
+              <a class="btn btn-sm btn-secondary" th:href="@{/mylist/{id}(id=${b.id})}">Add To Cart</a>
+              <a class="icon-edit" th:href="@{/editBook/{id}(id=${b.id})}"><i class="fa-solid fa-pen-to-square"></i></a>
+              <a class="icon-delete" th:href="@{/deleteBook/{id}(id=${b.id})}"><i class="fa-solid fa-trash"></i></a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <p class="mb-0">&copy; 2025 Book Store. All rights reserved.</p>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+          integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+          crossorigin="anonymous"></script>
+</body>
+</html>
